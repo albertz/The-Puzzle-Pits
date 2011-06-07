@@ -67,20 +67,21 @@ function srclink() {
 	$C[$fext] $OBJS $o -o $b ${(z)Lflags[$f]} ${(z)Lflags[.]} || exit -1
 }
 
-BINS=("source/main.cpp")
+#BINS=("source/main.cpp")
+BINS=()
 
 # compile all sources
 OBJS=()
-for f in source/**/*.{cpp,c}; do
+for f in *.c; do
 	srccompile "$f"
 	[[ ${BINS[(i)$f]} -gt ${#BINS} ]] && \
 		OBJS=($OBJS "$BUILDDIR/${f/.${f##*.}/.o}")
 done
 
-if [ "$(uname)" = "Darwin" ]; then
-	srccompile "source/SDLmain.m"
-	OBJS=($OBJS "$BUILDDIR/source/SDLmain.o")
-fi
+#if [ "$(uname)" = "Darwin" ]; then
+#	srccompile "source/SDLmain.m"
+#	OBJS=($OBJS "$BUILDDIR/source/SDLmain.o")
+#fi
 
 for b in $BINS; do
 	mkdir -p "bin/$(dirname "$b")"
