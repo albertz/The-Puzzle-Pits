@@ -17,7 +17,6 @@ struct GameVars gamevars;
 WORD  editxc=0, edityc=0;
 WORD  under[23][23],over[23][23],pitcode[23][23];
 WORD  tilemenu[10];
-char  NumberString[]={"1234567890"};
 WORD  letgo1;  //user: let go of mouse button #1!
 WORD  copysidebar=0;
 WORD  redgems,greengems,bluegems,yellowgems,redkeys,greenkeys,bluekeys;
@@ -27,7 +26,6 @@ struct PitCode  pitcodedef[MAXPITCODE];
 unsigned char far code[32768];
 UWORD totalcode;
 
-#define COMPILEGAME 1
 WORD  walkable[100+1];
 WORD  path[23][23],lastpushed[23][23],arrows[442],plates[442];
 WORD  lastpathx,lastpathy;
@@ -196,7 +194,6 @@ main()
         break;
     }
   }while(choice!=2);
-  FreeShapes();
   Clear(LOGIC);
   FadeIn();
   cleanExit(RET_OK);
